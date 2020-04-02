@@ -1,0 +1,134 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    color: #383838;
+}
+
+#hero{
+    background-image: url('../img/hero.jpg');
+    height: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#hero > h1{
+    text-align: center;
+    color: #ffffff;
+}
+
+#navigation{
+    background-color: #282828;
+    padding: 0px 80px;
+}
+
+#logo{
+    float: left;
+    line-height: 50px;
+    height: 50px;
+    padding: 0px 25px;
+    color: #ffffff;
+    font-size: 18pt;
+    font-weight: 500;
+    background-color: #0d4dad;
+}
+
+#menu{
+    list-style: none;
+    margin: 0;
+    float:right;
+}
+
+#menu li{
+    display: inline-block;
+    margin: 0;
+}
+
+#menu li a{
+    display: inline-block;
+    padding: 0px 25px;
+    line-height: 50px;
+    font-size: 12pt;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.container{
+    width: 1100px;
+    margin: 0 auto;
+    display: block;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-title{
+    margin: 40px 0px 60px 0px;
+    text-align: center;
+}
+
+.row{
+    margin: 0px -15px;
+    position: relative;
+}
+
+.col{
+    padding: 0px 15px;
+    width: 25%;
+    float: left;
+    display: block;
+    position: relative;
+}
+
+.card{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.card img{
+    max-width: 100%;
+    box-shadow: 0px 2px 3px rgba(0,0,0,.45);
+}
+
+.btn{
+    background-color: #0d4dad;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+.btn-block{
+    display: block;
+}
+
+.table td{
+    padding: 10px 10px;
+}
+
+.price{
+    color: #0d4dad;
+    padding: 10px 0;
+    display: block;
+    font-weight: 500;
+}
+
+#footer{
+    padding: 40px;
+    text-align: center;
+    background-color: #092f68;
+    color: #ffffff;
+    margin-top: 40px;
+}
+
+.clearfix::after, .row::after{
+    content: ' ';
+    display: block;
+    clear: both;
+}
