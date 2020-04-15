@@ -1,0 +1,103 @@
+<!-- 
+    Nama Kelompok : 
+    I Made Giri Kusuma 1708561005
+    I Putu Agus Wahyu Widiatmika 1708561008
+    I Gusti Bagus Dharma Putra 1708561010
+    I Putu Bayu Wira Brata 1708561018
+    Anak Agung Rama Suryananda Widarsa 1708561024
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kalkulator</title>
+    <script src="main.js"></script>
+</head>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #kalkulator-container{
+        padding: 10px;
+        /* width: 700px; */
+    }
+
+    .kalkulator-button{
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        border: none;
+        color: #ffffff;
+        background-color: #5f48df;
+        display: block;
+        float: left;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        outline: 0;
+        border: 1px solid transparent;
+        font-size: 14pt;
+    }
+
+    .kalkulator-button:hover{
+        background-color: #ffffff;
+        color: #5f48df;
+        border: 1px solid #5f48df;
+    }
+
+    .clearfix::after{
+        content: " ";
+        clear: both;
+        display: block;
+    }
+
+    #display{
+        width: 230px;
+        height: 50px;
+        border: 1px solid #5f48df;
+        margin-bottom: 10px;
+        outline: 0;
+        font-size: 14pt;
+        text-align: right;
+        line-height: 50px;
+        color: #5f48df;
+        padding: 0px 10px;
+    }
+</style>
+<body>
+    <div id="display">
+        0
+    </div>
+    <div class="clearfix">
+        <button type="button" class="kalkulator-button number">9</button>
+        <button type="button" class="kalkulator-button number">8</button>
+        <button type="button" class="kalkulator-button number">7</button>
+        <button type="button" class="kalkulator-button operator">+</button>
+    </div>
+    <div class="clearfix">
+        <button type="button" class="kalkulator-button number">6</button>
+        <button type="button" class="kalkulator-button number">5</button>
+        <button type="button" class="kalkulator-button number">4</button>
+        <button type="button" class="kalkulator-button operator">-</button>
+    </div>
+    <div class="clearfix">
+        <button type="button" class="kalkulator-button number">3</button>
+        <button type="button" class="kalkulator-button number">2</button>
+        <button type="button" class="kalkulator-button number">1</button>
+        <button type="button" class="kalkulator-button operator">*</button>
+    </div>
+    <div class="clearfix">
+        <button type="button" class="kalkulator-button number">0</button>
+        <button type="button" class="kalkulator-button number">.</button>
+        <button type="button" class="kalkulator-button" id="clear">AC</button>
+        <button type="button" class="kalkulator-button operator">/</button>
+    </div>
+
+    <div class="clearfix">
+        <button type="button" class="kalkulator-button" id="hasil" style="width: 230px">=</button>
+    </div>
+</body>
+</html>

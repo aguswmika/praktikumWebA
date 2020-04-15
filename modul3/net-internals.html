@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)chrome://net-internals/#hsts -->
+<html><!--
+Copyright (c) 2012 The Chromium Authors. All rights reserved.
+Use of this source code is governed by a BSD-style license that can be
+found in the LICENSE file.
+--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <!-- Don't use automatic scaling on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,
+                                   maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="chrome://resources/css/text_defaults.css">
+    <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+/* Only common styles should be declared here. */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;  /* Prevents scroll bar flickering on resize. */
+}
+
+ul {
+  padding-left: 2em;
+}
+
+/* This class should be given to top-level content boxes (like the view's main
+ * DIV). It gives them a consistent padding, and makes them scrollable. */
+.content-box {
+  overflow: auto;
+  padding: 20px 10px 10px 20px;
+}
+
+.deindent-header,
+.content-box h1,
+.content-box h2,
+.content-box h3,
+.content-box h4,
+.content-box h5,
+.content-box h6 {
+  margin-left: -10px;
+}
+
+#tab-list {
+  border-right: 1px solid rgb(170,170,170);
+  display: inline-block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0;
+}
+
+#tab-list a {
+  display: inline-block;
+  font-size: 16px;
+  margin: 0;
+  padding: 2px 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  width: 100%;
+}
+
+#tab-list a,
+#tab-list a:visited {
+  color: rgb(140,140,140);
+}
+
+#tab-list .selected,
+#tab-list a:hover {
+  color: black;
+}
+
+/* Styling for text indicating a potential problem or error state. */
+.warning-text {
+  color: rgb(238, 0, 0);
+}
+</style>
+    <style>/* Copyright (c) 2012 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#chromeos-view-password-div,
+#chromeos-view-parse-status {
+  margin-top: 20px;
+}
+</style>
+    <script src="chrome://resources/js/util.js"></script>
+    <script src="chrome://resources/js/cr.js"></script>
+    <script src="chrome://net-internals/index.js"></script>
+  </head>
+  <body id="events-view-drop-target">
+    <div id="tab-list" style="position: absolute; left: 0px; top: 0px; width: 187px; height: 688px;">
+    <a href="chrome://net-internals/#events">Events</a><br><a href="chrome://net-internals/#proxy">Proxy</a><br><a href="chrome://net-internals/#dns">DNS</a><br><a href="chrome://net-internals/#sockets">Sockets</a><br><a href="chrome://net-internals/#hsts" class="selected">Domain Security Policy</a><br><a href="chrome://net-internals/#chromeos" style="display: none;">ChromeOS</a><br></div>
+
+    <div id="main-tab-contents">
+      <!-- ================= Events view =================== -->
+<div id="events-view-tab-content" class="content-box" style="display: none; position: absolute; left: 187px; top: 0px; width: 1253px; height: 688px;">
+  The net-internals events viewer and related functionality has been removed.
+  Please use <a href="chrome://net-export/">chrome://net-export</a> to save netlogs and the external <a href="https://chromium.googlesource.com/catapult/+/master/netlog_viewer/">catapult netlog_viewer</a> to view them.
+</div>
+
+
+      <!-- Proxy info -->
+
+<div id="proxy-view-tab-content" class="content-box" style="display: none; position: absolute; left: 187px; top: 0px; width: 1253px; height: 688px;">
+ <input type="button" value="Re-apply settings" id="proxy-view-reload-settings">
+ <input type="button" value="Clear bad proxies" id="proxy-view-clear-bad-proxies">
+</div>
+
+      <!-- Host resolver info -->
+<div id="dns-view-tab-content" class="content-box" style="display: none; position: absolute; left: 187px; top: 0px; width: 1253px; height: 688px;">
+  <h4>
+    Host resolver cache
+    <input type="button" value="Clear host cache" id="dns-view-clear-cache">
+  </h4>
+</div>
+
+      <style>
+#sockets-view-close-idle-button,
+#sockets-view-flush-button {
+  margin-bottom: 2px;
+}
+</style>
+
+<div id="sockets-view-tab-content" class="content-box" style="display: none; position: absolute; left: 187px; top: 0px; width: 1253px; height: 688px;">
+  <ul style="margin-top:0">
+    <li>
+      <input type="button" value="Close idle sockets" id="sockets-view-close-idle-button">
+    </li>
+    <li>
+      <input type="button" value="Flush socket pools" id="sockets-view-flush-button">
+      <span class="warning-text">May break pages with active connections</span>
+    </li>
+  </ul>
+</div>
+
+      <style>
+  #domain-security-policy-view-tab-content tt {
+    word-wrap: break-word;
+  }
+</style>
+
+<!-- HSTS/PKP/Expect-CT tab -->
+<div id="domain-security-policy-view-tab-content" class="content-box" style="position: absolute; left: 187px; top: 0px; width: 1253px; height: 688px;">
+  <!-- This UI allows a user to query and update the browser's list of
+       HSTS/PKP/Expect-CT domains. -->
+
+  <h3>HSTS/PKP</h3>
+
+  <div class="deindent-header">
+    HSTS is HTTP Strict Transport Security: a way for sites to elect to
+    always use HTTPS. See <a href="https://www.chromium.org/hsts" target="_blank">
+    https://www.chromium.org/hsts</a>. PKP is Public Key Pinning: Chrome "pins"
+    certain public keys for certain sites in official builds.</div>
+
+  <h4>Add HSTS domain</h4>
+
+  <p>Input a domain name to add it to the HSTS set:</p>
+  <form id="hsts-view-add-form">
+    Domain: <input type="text" id="hsts-view-add-input" placeholder="example.com"><br>
+    <label>Include subdomains for STS: <input type="checkbox" id="hsts-view-check-sts-input"></label><br>
+    <input type="submit" value="Add" id="hsts-view-add-submit">
+  </form>
+
+  <h4>Query HSTS/PKP domain</h4>
+
+  <p>Input a domain name to query the current HSTS/PKP set:</p>
+  <form id="hsts-view-query-form">
+    Domain: <input type="text" id="hsts-view-query-input" placeholder="example.com">
+    <input type="submit" value="Query" id="hsts-view-query-submit">
+  </form>
+  <div style="margin-top: 1em; margin-left: 2em; transition-property: background-color; background-color: rgb(255, 255, 255); transition-duration: 1000ms;" id="hsts-view-query-output"><span><b>Found:</b><br></span> static_sts_domain: <tt></tt><br> static_upgrade_mode: <tt>UNKNOWN</tt><br> static_sts_include_subdomains: <tt></tt><br> static_sts_observed: <tt></tt><br> static_pkp_domain: <br> static_pkp_include_subdomains: <br> static_pkp_observed: <br> static_spki_hashes: <tt></tt><br> dynamic_sts_domain: <tt>netflix.com</tt><br> dynamic_upgrade_mode: <tt>FORCE_HTTPS</tt><br> dynamic_sts_include_subdomains: <tt>false</tt><br> dynamic_sts_observed: <tt>1585747590.99045</tt><br> dynamic_sts_expiry: <tt>1672147590.990356</tt><br></div>
+
+
+  <h3>Expect-CT</h3>
+
+  <div class="deindent-header">
+    Expect-CT allows sites to elect to always require valid Certificate
+    Transparency information. See
+    <a href="https://tools.ietf.org/html/draft-ietf-httpbis-expect-ct" target="_blank">https://tools.ietf.org/html/draft-ietf-httpbis-expect-ct</a>.</div>
+
+  <h4>Add Expect-CT domain</h4>
+
+  <p>Input a domain name to add it to the Expect-CT set. Leave Enforce unchecked
+     to configure Expect-CT in report-only mode.</p>
+  <form id="expect-ct-view-add-form">
+    <div><label>Domain: <input type="text" id="expect-ct-view-add-input" placeholder="example.com"></label></div>
+    <div><label>Report URI (optional):
+      <input type="text" id="expect-ct-view-add-report-uri-input" placeholder="https://reporting.example.com/expect-ct"></label>
+    </div>
+    <div><label>Enforce:
+      <input type="checkbox" id="expect-ct-view-check-enforce-input"></label>
+    </div>
+    <input type="submit" value="Add" id="expect-ct-view-add-submit">
+  </form>
+
+  <h4>Query Expect-CT domain</h4>
+
+  <p>Input a domain name to query the current Expect-CT set:</p>
+  <form id="expect-ct-view-query-form">
+    <label>Domain: <input type="text" id="expect-ct-view-query-input" placeholder="example.com"></label>
+    <input type="submit" value="Query" id="expect-ct-view-query-submit">
+  </form>
+  <div style="margin-top: 1em; margin-left: 2em;" id="expect-ct-view-query-output">
+  </div>
+
+  <h4>Send test Expect-CT report</h4>
+
+  <p>Trigger a test report to the given report URI. The report will contain a
+    hostname of "expect-ct-report.test" and dummy data in other fields.</p>
+  <form id="expect-ct-view-test-report-form">
+    <label>Report URI: <input type="text" id="expect-ct-view-test-report-uri"></label>
+    <input type="submit" value="Send" id="expect-ct-view-test-report-submit">
+  </form>
+  <div style="margin-top: 1em; margin-left: 2em;" id="expect-ct-view-test-report-output">
+  </div>
+
+  <h3>Delete domain security policies</h3>
+
+  <p>
+    Input a domain name to delete its dynamic domain security policies (HSTS
+    and Expect-CT). (<i>You cannot delete preloaded entries.</i>):
+  </p>
+  <form id="domain-security-policy-view-delete-form">
+    <label>Domain: <input type="text" id="domain-security-policy-view-delete-input" placeholder="example.com"></label>
+    <input type="submit" value="Delete" id="domain-security-policy-view-delete-submit">
+  </form>
+
+</div>
+
+      <div id="chromeos-view-tab-content" class="content-box" style="display: none; position: absolute; left: 187px; top: 0px; width: 1253px; height: 688px;">
+  <h4 style="margin-top:0">Import ONC file</h4>
+  <div id="chromeos-view-import-div">
+    <label>Import ONC File
+      <input type="file" id="chromeos-view-import-onc">
+    </label>
+  </div>
+  <div id="chromeos-view-password-div" hidden="">
+    This onc file appears to be encrypted.  Please provide the decryption key:
+    <div>
+      <input type="password" id="chromeos-view-onc-password">
+    </div>
+  </div>
+  <div id="chromeos-view-parse-status" hidden="">
+  </div>
+  <div id="chromeos-view-store-debug-logs-div">
+    <h4>Store Logs</h4>
+    <div>
+      <input type="button" id="chromeos-view-store-debug-logs" value="Store System Logs">
+      <label for="chromeos-view-store-debug-logs" id="chromeos-view-store-debug-logs-status">
+      </label>
+    </div>
+    <div>
+      <input type="button" id="chromeos-view-store-combined-debug-logs" value="Store System and User Logs">
+      <label for="chromeos-view-store-combined-debug-logs" id="chromeos-view-store-combined-debug-logs-status">
+      </label>
+    </div>
+  </div>
+  <div id="chromeos-view-network-debugging-div">
+    <h4>Network Debugging</h4>
+    <dl>
+      <dt>Select interface for debugging</dt>
+      <dd>
+        <input type="button" value="Wi-Fi" id="chromeos-view-network-debugging-wifi">
+        <input type="button" value="Ethernet" id="chromeos-view-network-debugging-ethernet">
+        <input type="button" value="Cellular" id="chromeos-view-network-debugging-cellular">
+        <input type="button" name="subsystem" value="None" id="chromeos-view-network-debugging-none">
+      </dd>
+    </dl>
+    <label id="chromeos-view-network-debugging-status">
+    </label>
+  </div>
+</div>
+
+    </div>
+
+    <script src="chrome://resources/js/jstemplate_compiled.js"></script>
+  
+
+</body></html>
