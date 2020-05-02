@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo app</title>
+</head>
+<style>
+    h1,h2,h3,h4,h5{
+        margin-top: 0px;
+    }
+    .container{
+        width: 500px;
+        margin: 0 auto;
+    }
+    .left{
+        float: left;
+        padding-left: 20px;
+        box-sizing: border-box;
+    }
+    .right{
+        float: right;
+        box-sizing: border-box;
+    }
+    .clearfix{
+        clear: both;
+        content: ' ';
+        display: block;
+    }
+</style>
+<body>
+    <div class="container">
+        <h3>Todo app</h3>
+        <input type="text" id="search" placeholder="Cari note Anda" onkeyup="todoSearch()" onchange="todoSearch()"> <button onclick="todoSearch()">Filter</button> <br>
+
+        <button id="todo-tambah" style="margin-top: 20px;margin-bottom: 20px;">Tambah</button>
+        <div id="container-todo" style="display: none">
+            <h4>Tambah todo</h4>
+            <input type="text" id="todo-input" placeholder="Masukan judul"><br>
+            <textarea id="todo-note-input" placeholder="Masukan note"></textarea> <br>
+            <button id="todo-simpan" style="margin-bottom: 20px;">Simpan</button>
+        </div>
+        <h3>List todo</h3>
+        <div id="container-todo-list">
+
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
