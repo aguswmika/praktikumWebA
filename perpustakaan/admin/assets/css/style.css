@@ -1,0 +1,416 @@
+@import url("font.css");
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body{
+	font-family: "Roboto";
+	line-height: 1.42857143;
+	font-size: 14px;
+	color: #575757;
+}
+
+a{
+	color: #2196f3;
+	text-decoration: none;
+}
+
+/* kode untuk header */
+
+.header{
+	color: #FFFFFF;
+	font-family: "Gotham";
+	background-color: #82cba4;
+	padding: 10px 40px;
+	border-bottom: 2px solid #52ad7c;
+}
+
+.logo{
+	font-size: 28px;
+	float: left;
+}
+
+.other{
+	float: right;
+	line-height: 40px;
+}
+
+/* kode untuk body */
+
+.body{
+	position: relative;
+}
+
+.pinjam{
+	padding: 10px;
+	text-align: center;
+	font-size: 32px;
+	color: #FFFFFF;
+}
+
+.navigation{
+	width: 250px;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	top: 0px;
+	background-color: #333333;
+	min-height: 750px;
+	padding: 10px;
+}
+
+.menu{
+	list-style-type: none;
+}
+
+.menu > li{
+	color: #9e9e9e;
+}
+
+.menu > li > a{
+	display: block;
+	color: #bdbdbd;
+	padding: 15px 10px;
+	font-size: 16px;
+}
+
+.active, .menu > li > a:hover{
+	background-color: #03a9f4;
+	color: #FFFFFF !important;
+}
+
+.user{
+	display: block;
+	margin-top: 15px;
+}
+
+.user-img{
+	display: block;
+	width: 100px;
+	height: 100px;
+	background-color: #009688;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 100px;
+	color: #FFFFFF;
+	font-size: 24px;
+	font-family: "Gotham";
+	font-weight: 700;
+	margin: 0 auto;
+}
+
+.user-name{
+	text-align: center;
+	display: block;
+	font-size: 16px;
+	font-family: "Gotham";
+	font-weight: 700;
+	color: #FFFFFF;
+	margin: 10px 0;
+}
+
+.content{
+	padding-left: 250px;
+	padding-top: 10px;
+	padding-bottom: 40px;
+}
+
+
+.nav-link{
+	list-style-type: none;
+	margin-bottom: 15px;
+}
+
+.nav-link > li{
+	display: inline-block;
+}
+
+.nav-link > li + li::before{
+	content: '>';
+	padding: 0px 10px;
+}
+
+.footer{
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	background-color: #FFFFFF;
+	padding-bottom: 10px;
+}
+
+.btn-buy{
+	width: 100% !important;
+	height: 65px !important;
+	line-height: 65px !important;
+	font-size: 32px !important;
+	background-color: #81c784 !important
+}
+
+.login-container{
+	display: table;
+	width: 100%;
+	height: 100vh;
+}
+
+.login{
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.login .panel-body{
+	text-align: left;
+}
+
+.pesan{
+	width: 100%;
+}
+
+.pesan td{
+	padding: 5px 0;
+}
+
+/* kode untuk semua */
+
+.container-fluid{
+	display: block;
+	padding: 0px 15px;
+	margin: 0 auto;
+}
+
+.count{
+	text-align: center;
+	display: block;
+	font-size: 42px;
+}
+
+
+.panel{
+	box-shadow: 0px 2px 1px rgba(0,0,0,.2);
+	margin-bottom: 15px;
+}
+
+.panel-title{
+	padding: 10px 0px;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 18px;
+	font-weight: 700;
+	background-color: #eeeeee;
+}
+
+.panel-body{
+	padding: 15px;
+}
+
+.modal-container{
+	position: absolute;
+	bottom: 0px;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	width: 100%;
+	background-color: rgba(0,0,0,.45);
+	display: none;
+}
+
+.modal{
+	box-shadow: 0px 2px 1px rgba(0,0,0,.2);
+	margin-bottom: 15px;
+	width: 700px;
+	margin-top: 80px;
+}
+
+.modal-title{
+	padding: 10px 0px;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 18px;
+	font-weight: 700;
+	background-color: #eeeeee;
+	margin: 0 auto;
+}
+
+.modal-footer{
+	padding: 10px 0px;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+	background-color: #eeeeee;
+	margin: 0 auto;
+}
+
+.modal-body{
+	padding: 15px;
+	background-color: #FFFFFF;
+}
+
+.tbl-responsive{
+	display: block;
+	overflow-x: auto;
+}
+
+
+.tbl{
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 10px;
+}
+
+.tbl th{
+	text-align: left;
+	border-bottom: 2px solid #cccccc;
+	padding: 5px;
+}
+
+.tbl td{
+	padding: 5px;
+}
+
+.btn{
+	min-width: 70px;
+	display: inline-block;
+	padding: 0px 10px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #52ad7c;
+	text-align: center;
+	color: #FFFFFF;
+	border: 0;
+	outline: 0;
+	cursor: pointer;
+	font-family: "Roboto";
+}
+
+.selected{
+	background-color: #cccccc;
+}
+
+.btn-block{
+	display: block;
+	width: 100%;
+}
+
+.fl{
+	float: left;
+	display: block;
+}
+
+.fr{
+	float: right;
+	display: block;
+}
+
+label{
+	margin-bottom: 5px;
+	display: block;
+	font-weight: 700;
+}
+
+.form-group{
+	display: block;
+	margin-bottom: 15px;
+}
+
+.form-control{
+	display: inline-block;
+	width: 100%;
+	padding: 0 10px;
+	line-height: 30px;
+	height: 30px;
+	outline: 0;
+    font-family: "Roboto";
+    appearance: none;
+    border: 1px solid #d4d4d4;
+    box-shadow: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+}
+
+.nav-page{
+	list-style-type: none;
+}
+
+.nav-page > li{
+	display: inline-block;
+}
+
+.nav-page > li > a{
+	display: block;
+	height: 25px;
+	line-height: 25px;
+	padding: 0 5px;
+	border: 1px solid #cccccc;
+	margin-left: -1px;
+	color: #575757;
+}
+
+.nav-page > li > a.active{
+	background-color: #52ad7c;
+}
+
+.message{
+	padding: 0 10px;
+    background-color: #29b6f6;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 50px;
+    margin-bottom: 10px;
+}
+
+.message i{
+	cursor: pointer;
+}
+
+.error{
+	background-color: #e57373 !important;
+}
+
+/* kode untuk responsive */
+
+
+
+
+.row{
+	margin: 0px -15px;
+}
+
+.col{
+	padding: 0px 15px;
+	position: relative;
+	float: left;
+}
+
+.md-2{
+	width: 16.6666667%;
+}
+
+.md-3{
+	width: 25%;
+}
+
+.md-4{
+	width: 33.3333333%;
+}
+
+.md-8{
+	width: 66.6666667%;
+}
+
+.md-9{
+	width: 75%;
+}
+
+.md-12{
+	width: 100%;
+}
+
+.clearfix::after, .row::after{
+	content: ' ';
+	display: block;
+	clear: both;
+}

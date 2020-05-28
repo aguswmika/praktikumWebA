@@ -1,0 +1,29 @@
+@font-face{
+	font-family: "Gotham";
+	font-weight: 300;
+	src: url("../fonts/Gotham-Light.otf");
+}
+
+@font-face{
+	font-family: "Gotham";
+	font-weight: 500;
+	src: url("../fonts/Gotham-Medium.otf");
+}
+
+@font-face{
+	font-family: "Gotham";
+	font-weight: 700;
+	src: url("../fonts/Gotham-Bold.otf");
+}
+
+@font-face{
+	font-family: "Roboto";
+	font-weight: 500;
+	src: url("../fonts/Roboto-Regular.ttf");
+}
+
+@font-face{
+	font-family: "Roboto";
+	font-weight: 700;
+	src: url("../fonts/Roboto-Bold.ttf");
+}

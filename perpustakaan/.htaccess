@@ -1,0 +1,12 @@
+Options -MultiViews
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^buku/hal/([0-9]+) index.php?p=buku&hal=$1 [L]
+RewriteRule ^buku/(.*)$ index.php?p=buku&slug=$1 [L]
+RewriteRule ^buku index.php?p=buku [L]
+RewriteRule ^kontak index.php?p=kontak [L]
+RewriteRule ^tentang index.php?p=tentang [L]
