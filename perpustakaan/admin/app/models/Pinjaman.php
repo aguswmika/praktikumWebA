@@ -5,7 +5,7 @@ class Pinjaman
 	
 	static function getAll($limit = 0){
         $sql = "
-            SELECT pinjaman.*, u1.nama as nama_peminjamn, u2.nama as nama_admin FROM pinjaman
+            SELECT pinjaman.*, u1.nama as nama_peminjam, u2.nama as nama_admin FROM pinjaman
             INNER JOIN user AS u1 ON u1.id_user = pinjaman.id_peminjam
             INNER JOIN user AS u2 ON u2.id_user = pinjaman.id_admin
         ";
@@ -92,11 +92,10 @@ class Pinjaman
 	}
 
 	static function add(){
-		$id     = autoNum('pinjaman', 'id_pinjaman', 'PJ');
+        $id     = autoNum('pinjaman', 'id_pinjaman', 'PJ');
 		
 		$sql     = "";
 		$idBuku  = Input::post('id');
-		$total   = 0;
 		$jumlah  = Input::post('jumlah');
         $newJml  = 0;
         $status  = Input::post('status');
@@ -112,18 +111,28 @@ class Pinjaman
 			$arr      = array_merge($arr, [$id, $newId, $jumlah[$key]]);
 		}
 
-        $sql  = "INSERT INTO pinjaman (id_penjualan, id_peminjam, id_admin, jumlah, `status`, tanggal_permohonan, tanggal_status, tanggal_kembali) VALUES (?, ?, ?, ?, ?, ?, ?, ?);".$sql;
+        $sql  = "INSERT INTO pinjaman (id_pinjaman, id_peminjam, id_admin, jumlah, `status`, tanggal_permohonan, tanggal_status, tanggal_kembali) VALUES (?, ?, ?, ?, ?, ?, ?, ?);".$sql;
 		$arr  = array_merge([$id, $peminjam, $admin, $newJml, $status, $date, $date, null], $arr);
 		$prep = DB::conn()->prepare($sql);
 		return $prep->execute($arr);
-	}
+    }
+
+    static function changeStatus()
+    {
+        $id_pinjaman = Input::post('id_pinjaman');
+        $status = Input::post('status') == 1 ? 1 : 2;
+
+        $sql  = "UPDATE pinjaman SET `status` = ? WHERE id_pinjaman = ?";
+        $prep = DB::conn()->prepare($sql);
+        return $prep->execute([$status, $id_pinjaman]);
+    }
 
 	static function del(){
 		$id = explode(',' ,substr(Input::post('id'), 1));
 
 		$sql = '';
 		foreach ($id as $newId) {
-			$sql .= "UPDATE penjualan SET del = 1 WHERE id_penjualan = ?;";
+			$sql .= "DELETE FROM pinjaman WHERE id_pinjaman = ?;";
 		}
 
 		$prep = DB::conn()->prepare($sql);

@@ -73,7 +73,7 @@ class User
 		$telepon  = Input::post('telepon');
 		$user     = Input::post('user');
 		$pass     = md5(sha1(Input::post('pass')));
-		$akses    = Input::post('akses');
+		$akses    = Input::post('akses') == 2 ? 2 : 3;
 
 
 		$sql  = "INSERT INTO user (id_user, nama, alamat, telepon, status, username, password, akses) VALUES (?, ?, ?, ?, 'active', ?, ?, ?);";

@@ -37,8 +37,8 @@
 			<div class="form-group">
 				<label>Akses</label>
 				<select name="akses" class="form-control">
-					<option value="2">Kasir</option>
-					<option value="1">Admin</option>
+					<option value="3">Peminjam</option>
+					<option value="2">Admin</option>
 				</select>
 			</div>
 			<div class="form-group">

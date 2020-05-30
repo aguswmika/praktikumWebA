@@ -285,6 +285,10 @@ a{
 	font-family: "Roboto";
 }
 
+.btn-red{
+    background-color: #e57373;
+}
+
 .selected{
 	background-color: #cccccc;
 }

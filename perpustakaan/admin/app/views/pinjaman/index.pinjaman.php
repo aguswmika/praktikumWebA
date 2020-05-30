@@ -40,9 +40,22 @@
                                             <td><?php echo $item->nama_peminjam ?> (<?php echo $item->id_peminjam ?>)</td>
                                             <td><?php echo $item->nama_admin ?> (<?php echo $item->id_admin ?>)</td>
                                             <td><?php echo $item->jumlah ?></td>
-                                            <td><?php echo $item->status ?></td>
+                                            <td><?php echo $item->status == 0 ? 'Pending' : ($item->status == 1 ?  'Diterima' : 'Ditolak')  ?></td>
                                             <td><?php echo date('Y-m-d', strtotime($item->tanggal_permohonan)) ?></td>
-                                            <td><a href="?p=pinjaman&act=bill&id=<?php echo $item->id_pinjaman ?>&_token=<?php echo CSRF::token() ?>" class="btn">Print</a></td>
+                                            <td>
+                                                <form action="?p=pinjaman&act=changestatus" method="POST" style="display: inline-block">
+                                                    <input type="hidden" name="_token" value="<?php echo CSRF::token() ?>">
+                                                    <input type="hidden" name="id_pinjaman" value="<?php echo $item->id_pinjaman ?>">
+                                                    <input type="hidden" name="status" value="1">
+                                                    <button type="submit" class=" btn">Terima</button>
+                                                </form>
+                                                <form action="?p=pinjaman&act=changestatus" method="POST" style="display: inline-block">
+                                                    <input type="hidden" name="_token" value="<?php echo CSRF::token() ?>">
+                                                    <input type="hidden" name="id_pinjaman" value="<?php echo $item->id_pinjaman ?>">
+                                                    <input type="hidden" name="status" value="2">
+                                                    <button type="submit" class=" btn btn-red">Tolak</button>
+                                                </form>
+                                            </td>
                                             </tr>
                                         <?php } ?>
 

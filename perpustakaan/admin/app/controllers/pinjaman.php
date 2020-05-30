@@ -22,7 +22,7 @@ switch ($url) {
 			'id'        => $id,
             'buku'      => Buku::getPj(),
             'user'      => User::getPj()
- 		];
+        ];
 		
 		if(cekPost()){
 			if(Pinjaman::add()){
@@ -36,7 +36,43 @@ switch ($url) {
 			view('pinjaman/add.pinjaman', $data);
 		}
 		
-		break;
+        break;
+    
+    case 'changestatus':
+        if (cekPost()) {
+            if (Pinjaman::changeStatus()) {
+                msg('Berhasil diubah');
+            } else {
+                msg('Gagal diubah', 'error');
+            }
+        }
+
+        redirect('?p=pinjaman');
+        
+        break;
+
+    case 'edit':
+        $item = Pinjaman::getSingle(Input::get('id'));
+        $data = [
+            'title'     => 'Edit Pinjaman',
+            'item'        => $id,
+            'buku'      => Buku::getPj(),
+            'user'      => User::getPj()
+        ];
+
+        if (cekPost()) {
+            if (Pinjaman::add()) {
+                msg('Berhasil ditambahkan');
+                redirect('?p=pinjaman');
+            } else {
+                msg('Gagal ditambahkan');
+                redirect('?p=pinjaman&act=add');
+            }
+        } else {
+            view('pinjaman/add.pinjaman', $data);
+        }
+
+        break;
 
 	case 'del':
 		if(cekPost()){
