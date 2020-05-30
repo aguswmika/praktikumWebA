@@ -49,10 +49,11 @@
 			</div>
 			<?php if(Session::sess('akses') == 1){ ?>
 			<div class="form-group">
-				<label>Akses</label>
-				<select name="akses" class="form-control">
-					<option value="2">Kasir</option>
-					<option value="1" <?php if($user->akses == 1){echo 'selected';} ?>>Admin</option>
+                <label>Akses</label>
+                <select name="akses" class="form-control">
+                    <option value="3">Peminjam</option>
+                    <option value="2" <?php if($user->akses == 2){echo 'selected';} ?>>Admin</option>
+					<option value="1" <?php if($user->akses == 1){echo 'selected';} ?>>SuperAdmin</option>
 				</select>
 			</div>
 			<?php } ?>

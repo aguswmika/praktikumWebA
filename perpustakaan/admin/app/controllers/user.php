@@ -4,7 +4,7 @@ $url = !empty(Input::get('act')) ? Input::get('act') : 'index';
 model('user');
 switch ($url) {
 	case 'index':
-		cekAkses();
+		cekAkses([1]);
 		$user = empty(Input::get('search')) ? User::getAll(10) : User::search(Input::get('search'));
 		$data = [
 			'title'        => 'User',
@@ -15,7 +15,7 @@ switch ($url) {
 		break;
 
 	case 'add':
-		cekAkses();
+		cekAkses([1]);
 		$id = autoNum('user', 'id_user', 'KS');
 		$data = [
 			'title'     => 'Tambah User',
@@ -37,7 +37,8 @@ switch ($url) {
 		
 		break;
 
-	case 'edit':
+    case 'edit':
+        cekAkses([1]);
 		$id = Input::get('id');
 		$data = [
 			'title'     => 'Edit User',
@@ -68,7 +69,7 @@ switch ($url) {
 		break;
 
 	case 'del':
-		cekAkses();
+		cekAkses([1]);
 		if(cekPost()){
 			if(User::del()){
 				msg('Berhasil dihapus');
