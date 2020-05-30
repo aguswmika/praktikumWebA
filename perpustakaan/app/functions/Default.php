@@ -79,7 +79,7 @@ function redirect($str){
 }
 
 function paginate($table, $limit){
-	$sql = "SELECT count(*) as count FROM {$table} WHERE del = 0";
+	$sql = "SELECT count(*) as count FROM {$table}";
 
 	$prep = DB::conn()->prepare($sql);
 	$prep->execute();

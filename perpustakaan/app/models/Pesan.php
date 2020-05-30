@@ -9,7 +9,7 @@ class Pesan
 		$email   = Input::post('email');
 		$pesan   = Input::post('pesan');
 
-		$sql = "INSERT INTO pesan (perihal, nama, email, pesan, tanggal, del) VALUES (?, ?, ?, ?, '".date('Y-m-d H:i:s')."', 0)";
+		$sql = "INSERT INTO pesan (perihal, nama, email, pesan, tanggal) VALUES (?, ?, ?, ?, '".date('Y-m-d H:i:s')."')";
 
 		$prep = DB::conn()->prepare($sql);
 		return $prep->execute([$perihal, $nama, $email, $pesan]);
