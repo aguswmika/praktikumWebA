@@ -51,7 +51,7 @@ class Pinjaman
 		$sql = "SELECT * FROM pinjaman WHERE id_pinjaman = ?";
 
 		if(Session::sess('akses') > 1){
-			$sql .= ' AND id_kasir = "'.Session::sess('id').'"';
+			$sql .= ' AND id_peminjam = "'.Session::sess('id').'"';
 		}
 
 		$prep = DB::conn()->prepare($sql);
@@ -85,9 +85,9 @@ class Pinjaman
 
 	static function search($search){
 		$search = '%'.$search.'%';
-		$sql = "SELECT * FROM penjualan_view WHERE (id_penjualan LIKE ? OR id_kasir LIKE ? OR nama LIKE ?) AND del = 0";
+		$sql = "SELECT * FROM penjualan_view WHERE (id_penjualan LIKE ? OR id_peminjam LIKE ? OR nama LIKE ?) AND del = 0";
 		if(Session::sess('akses') > 1){
-			$sql .= ' AND id_kasir = "'.Session::sess('id').'"';
+			$sql .= ' AND id_peminjam = "'.Session::sess('id').'"';
 		}
 
 		$prep = DB::conn()->prepare($sql);
@@ -139,7 +139,7 @@ class Pinjaman
         $id_pinjaman = Input::post('id_pinjaman');
         $status = Input::post('status') == 1 ? 1 : 2;
         $pinjaman = Pinjaman::getSingle($id_pinjaman);
-        if($pinjaman->status === 0){
+        if($pinjaman->status == 0){
             $sql  = "UPDATE pinjaman SET `status` = ? WHERE id_pinjaman = ?";
             $prep = DB::conn()->prepare($sql);
             return $prep->execute([$status, $id_pinjaman]);
