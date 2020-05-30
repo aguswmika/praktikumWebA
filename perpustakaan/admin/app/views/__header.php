@@ -28,14 +28,15 @@
 			<li>Utama</li>
 			<li><a href="?p=dashboard" <?php if(Input::get('p') === 'dashboard' || empty(Input::get('p'))){ echo 'class="active"';} ?>><i class="fa fa-home"></i> Dashboard</a></li>
 			<li><a href="?p=pinjaman" <?php if(Input::get('p') === 'pinjaman'){ echo 'class="active"';} ?>><i class="fa fa-handshake-o"></i> Pinjaman</a></li>
-			<li><a href="?p=pasok" <?php if(Input::get('p') === 'pasok'){ echo 'class="active"';} ?>><i class="fa fa-cubes"></i> Pasok</a></li>
+<?php if(Session::sess('akses') == 1 || Session::sess('akses') == 2) { ?><li><a href="?p=pasok" <?php if(Input::get('p') === 'pasok'){ echo 'class="active"';} ?>><i class="fa fa-cubes"></i> Pasok</a></li> <?php } ?>
 			<li>Data</li>
 			<li><a href="?p=buku" <?php if(Input::get('p') === 'buku'){ echo 'class="active"';} ?>><i class="fa fa-book"></i> Buku</a></li>
-			<?php if(Session::sess('akses') == 1) { ?><li><a href="?p=distributor" <?php if(Input::get('p') === 'distributor'){ echo 'class="active"';} ?>><i class="fa fa-truck"></i> Distributor</a></li><?php } ?>
+			<?php if(Session::sess('akses') == 1 || Session::sess('akses') == 2) { ?><li><a href="?p=distributor" <?php if(Input::get('p') === 'distributor'){ echo 'class="active"';} ?>><i class="fa fa-truck"></i> Distributor</a></li><?php } ?>
 			<?php if(Session::sess('akses') == 1) { ?><li><a href="?p=user" <?php if(Input::get('p') === 'user'){ echo 'class="active"';} ?>><i class="fa fa-users"></i> User</a></li><?php } ?>
-			<li>Laporan</li>
-			<li><a href="?p=laporan&act=penjualan" <?php if(Input::get('p') === 'laporan' && Input::get('act') === 'penjualan'){ echo 'class="active"';} ?>><i class="fa fa-list"></i> Lap. Pinjaman</a></li>
-			<li><a href="?p=laporan&act=pasok" <?php if(Input::get('p') === 'laporan' && Input::get('act') === 'pasok'){ echo 'class="active"';} ?>><i class="fa fa-list"></i> Lap. Pasok</a></li>
+            <?php if(Session::sess('akses') == 1) { ?><li><a href="?p=pesan" <?php if(Input::get('p') === 'pesan'){ echo 'class="active"';} ?>><i class="fa fa-envelope"></i> Pesan</a></li><?php } ?>
+			<!-- <li>Laporan</li> -->
+			<!-- <li><a href="?p=laporan&act=pinjaman" <?php if(Input::get('p') === 'laporan' && Input::get('act') === 'pinjaman'){ echo 'class="active"';} ?>><i class="fa fa-list"></i> Lap. Pinjaman</a></li> -->
+			<!-- <li><a href="?p=laporan&act=pasok" <?php if(Input::get('p') === 'laporan' && Input::get('act') === 'pasok'){ echo 'class="active"';} ?>><i class="fa fa-list"></i> Lap. Pasok</a></li> -->
 		</ul>
 	</div>
 	<div class="content">

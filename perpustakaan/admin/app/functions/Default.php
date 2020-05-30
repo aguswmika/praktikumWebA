@@ -71,10 +71,16 @@ function cekStatus(){
 	}
 }
 
-function cekAkses(){
-	if(Session::sess('akses') > 1){
-		redirect('?p=dashboard');
-	}
+function cekAkses($akses){
+    $redirect = true;
+    foreach($akses as $item){
+        if (Session::sess('akses') == $item) {
+            $redirect = false;
+            break;
+        }
+    }
+
+    if($redirect) redirect('?p=dashboard');
 }
 
 function redirect($str){

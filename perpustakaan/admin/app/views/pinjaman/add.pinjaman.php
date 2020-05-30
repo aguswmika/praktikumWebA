@@ -44,6 +44,7 @@
             <div class="panel">
                 <div class="panel-title">Data Pinjaman</div>
                 <div class="panel-body" style="padding:0px;">
+                    <?php if(Session::sess('akses') == 1 || Session::sess('akses') == 2) { ?>
                     <label style="text-align: center; margin:0;">Peminjam</label>
                     <div class="pinjam" style="background-color: #e57373;padding: 10px 10px 20px 10px">
                         <select name="id_peminjam" class="form-control" required style="border: none;border-radius: 0px;">
@@ -53,6 +54,8 @@
                             <?php } ?>
                         </select>
                     </div>
+                    <?php } ?>
+                    <?php if(Session::sess('akses') == 1 || Session::sess('akses') == 2) { ?>
                     <label style="text-align: center; margin:0;">Status</label>
                     <div class="pinjam" style="background-color: #7392e5;padding: 10px 10px 20px 10px">
                         <select name="status" class="form-control" required style="border: none;border-radius: 0px;">
@@ -61,6 +64,7 @@
                             <option value="2">Ditolak</option>
                         </select>
                     </div>
+                    <?php } ?>
                     <label style="text-align: center; margin:0;">Tanggal</label>
                     <div class="pinjam" style="background-color: #607d8b; padding: 10px 10px 20px 10px"><input type="date" class="form-control" style="border:0;" name="tanggal" value="<?php echo date('Y-m-d') ?>"></div>
                     <input type="hidden" name="_token" value="<?php echo CSRF::token() ?>">

@@ -24,7 +24,6 @@
 						<img src="<?php echo base_url('uploads/'.$item->gambar) ?>">
 						<h2><?php echo (strlen($item->judul) > 15) ? substr($item->judul, 0, 15)."..." : $item->judul ?></h2>
 						<p><?php echo (strlen($item->penulis) > 15) ? substr($item->penulis, 0, 15)."..." : $item->penulis ?></p>
-						<span class="price">[ Rp <?php echo $item->harga_final ?> ]</span>
 						<a href="<?php echo base_url('buku/'.$item->slug) ?>" class="btn btn-block"><i class="fa fa-send"></i> Lihat</a>
 					</div>
 				</div>
@@ -58,7 +57,6 @@
 									<img src="<?php echo base_url('uploads/'.$item->gambar) ?>">
 									<h2><?php echo (strlen($item->judul) > 15) ? substr($item->judul, 0, 15)."..." : $item->judul ?></h2>
 									<p><?php echo (strlen($item->penulis) > 15) ? substr($item->penulis, 0, 15)."..." : $item->penulis ?></p>
-									<span class="price">[ Rp <?php echo $item->harga_final ?> ]</span>
 									<a href="<?php echo base_url('buku/'.$item->slug) ?>" class="btn btn-block"><i class="fa fa-send"></i> Lihat</a>
 								</div>
 							</div>

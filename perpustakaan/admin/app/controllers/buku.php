@@ -14,7 +14,7 @@ switch ($url) {
 		break;
 
 	case 'add':
-		cekAkses();
+		cekAkses([1,2]);
 		$id = autoNum('buku', 'id_buku', 'BK');
 		$data = [
 			'title'     => 'Tambah Buku',
@@ -37,7 +37,7 @@ switch ($url) {
 		break;
 
 	case 'edit':
-		cekAkses();
+		cekAkses([1, 2]);
 		$id = Input::get('id');
 		$data = [
 			'title'     => 'Edit Buku',
@@ -60,7 +60,7 @@ switch ($url) {
 		break;
 
 	case 'del':
-		cekAkses();
+		cekAkses([1, 2]);
 		if(cekPost()){
 			if(Buku::del()){
 				msg('Berhasil dihapus');

@@ -6,8 +6,8 @@
 				<img src="<?php echo base_url('uploads/'.$buku->gambar) ?>" class="img-full">
 			</div>
 			<div class="col md-8">
-				<h1><?php echo $buku->judul ?> <small class="price" style="display: inline">[ Rp <?php echo $buku->harga_final ?>]</small></h1>
-				<a href="<?php echo base_url('kontak') ?>" class="btn" style="margin-top: 20px"><i class="fa fa-shopping-cart"></i> Pesan Sekarang</a>
+				<h1><?php echo $buku->judul ?></h1>
+				<a href="<?php echo base_url('admin?p=pinjaman') ?>" class="btn" style="margin-top: 20px"><i class="fa fa-shopping-cart"></i> Pinjam Sekarang</a>
 				<table class="tbl">
 					<tr>
 						<td colspan="3"><h4>Deskripsi Buku</h4></td>
@@ -56,7 +56,6 @@
 						<img src="<?php echo base_url('uploads/'.$item->gambar) ?>">
 						<h2><?php echo (strlen($item->judul) > 15) ? substr($item->judul, 0, 15)."..." : $item->judul ?></h2>
 						<p><?php echo (strlen($item->penulis) > 15) ? substr($item->penulis, 0, 15)."..." : $item->penulis ?></p>
-						<span class="price">[ Rp <?php echo $item->harga_final ?> ]</span>
 						<a href="<?php echo base_url('buku/'.$item->slug) ?>" class="btn btn-block"><i class="fa fa-send"></i> Lihat</a>
 					</div>
 				</div>

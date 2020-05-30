@@ -5,18 +5,19 @@ model('pasok');
 model('buku');
 model('distributor');
 switch ($url) {
-	case 'index':
+    case 'index':
+        cekAkses([1, 2]);
 		$pasok = empty(Input::get('search')) ? Pasok::getAll(10) : Pasok::search(Input::get('search'));
 		$data = [
 			'title'     => 'Pasok',
 			'pasok'     => $pasok,
 			'paginate'  => paginate('pasok', 10),
- 		];
+        ];
 		view('pasok/index.pasok', $data);
 		break;
 
 	case 'add':
-		cekAkses();
+		cekAkses([1,2]);
 		$id = autoNum('pasok', 'id_pasok', 'PS');
 		$data = [
 			'title'     => 'Tambah Pasok',
@@ -41,7 +42,7 @@ switch ($url) {
 		break;
 
 	case 'edit':
-		cekAkses();
+        cekAkses([1, 2]);
 		$id = Input::get('id');
 		$data = [
 			'title'     => 'Edit Pasok',
@@ -64,7 +65,7 @@ switch ($url) {
 		break;
 
 	case 'del':
-		cekAkses();
+        cekAkses([1, 2]);
 		if(cekPost()){
 			if(Pasok::del()){
 				msg('Berhasil dihapus');

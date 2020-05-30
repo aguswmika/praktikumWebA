@@ -2,7 +2,7 @@
 <ul class="nav-link">
     <li><a href="?p=dashboard"><i class="fa fa-home"></i></a></li>
     <li><a href="?p=pinjaman">Pinjaman</a></li>
-    <li>Add</li>
+    <li>Edit</li>
 </ul>
 <?php echo msg() ?>
 <form method="post" id="frmBuku">

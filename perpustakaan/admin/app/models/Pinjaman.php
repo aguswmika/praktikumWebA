@@ -7,11 +7,13 @@ class Pinjaman
         $sql = "
             SELECT pinjaman.*, u1.nama as nama_peminjam, u2.nama as nama_admin FROM pinjaman
             INNER JOIN user AS u1 ON u1.id_user = pinjaman.id_peminjam
-            INNER JOIN user AS u2 ON u2.id_user = pinjaman.id_admin
+            LEFT JOIN user AS u2 ON u2.id_user = pinjaman.id_admin
         ";
-		if(Session::sess('akses') > 1){
-			$sql .= ' AND pinjaman.id_admin = "'.Session::sess('id').'"';
-		}
+		if(Session::sess('akses') == 2){
+			$sql .= ' WHERE pinjaman.id_admin = "'.Session::sess('id').'"';
+		} else if (Session::sess('akses') == 3) {
+            $sql .= ' WHERE pinjaman.id_peminjam = "' . Session::sess('id') . '"';
+        }
 
 		if($limit > 0){
 			$awal = empty(Input::get('hal')) ? 1 : Input::get('hal');
@@ -48,7 +50,7 @@ class Pinjaman
 
 
 	static function getSingle($id){
-		$sql = "SELECT * FROM penjualan WHERE id_penjualan = ?";
+		$sql = "SELECT * FROM pinjaman WHERE id_pinjaman = ?";
 
 		if(Session::sess('akses') > 1){
 			$sql .= ' AND id_kasir = "'.Session::sess('id').'"';
@@ -60,7 +62,11 @@ class Pinjaman
 	}
 
 	static function getDetail($id){
-		$sql = "SELECT * FROM detail_view WHERE id_penjualan = ?";
+		$sql = "
+            SELECT penjualan_detail.*, buku.judul FROM penjualan_detail 
+            INNER JOIN buku ON buku.id_buku = penjualan_detail.id_buku
+            WHERE id_pinjaman = ?
+        ";
 
 		$prep = DB::conn()->prepare($sql);
 		$prep->execute([$id]);
@@ -98,10 +104,22 @@ class Pinjaman
 		$idBuku  = Input::post('id');
 		$jumlah  = Input::post('jumlah');
         $newJml  = 0;
-        $status  = Input::post('status');
+        if (Session::sess('akses') == 1 || Session::sess('akses') == 2) {
+            $status  = Input::post('status');
+        }else{
+            $status = 0;
+        }
         $date    = Input::post('tanggal').' '.date('H:i:s');
-        $peminjam= Input::post('id_peminjam');
-		$admin   = Session::sess('id');
+        if (Session::sess('akses') == 1 || Session::sess('akses') == 2) {
+            $peminjam = Input::post('id_peminjam');
+        }else{
+            $peminjam = Session::sess('id');
+        }
+        if (Session::sess('akses') == 1 || Session::sess('akses') == 2) {
+            $admin   = Session::sess('id');
+        }else{
+            $admin   = null;
+        }
 		$arr     = [];
 
 
@@ -119,15 +137,21 @@ class Pinjaman
 
     static function changeStatus()
     {
+        cekAkses([1,2]);
         $id_pinjaman = Input::post('id_pinjaman');
         $status = Input::post('status') == 1 ? 1 : 2;
+        $pinjaman = Pinjaman::getSingle($id_pinjaman);
+        if($pinjaman->status === 0){
+            $sql  = "UPDATE pinjaman SET `status` = ? WHERE id_pinjaman = ?";
+            $prep = DB::conn()->prepare($sql);
+            return $prep->execute([$status, $id_pinjaman]);
+        }
 
-        $sql  = "UPDATE pinjaman SET `status` = ? WHERE id_pinjaman = ?";
-        $prep = DB::conn()->prepare($sql);
-        return $prep->execute([$status, $id_pinjaman]);
+        return false;
     }
 
 	static function del(){
+        cekAkses([1, 2]);
 		$id = explode(',' ,substr(Input::post('id'), 1));
 
 		$sql = '';

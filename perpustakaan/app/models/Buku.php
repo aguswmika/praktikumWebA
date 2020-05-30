@@ -4,7 +4,7 @@ class Buku
 {
 	
 	static function getAll($limit = 0){
-		$sql = "SELECT * FROM buku_view WHERE del = 0";
+        $sql = "SELECT  * FROM buku";
 
 		if($limit > 0){
 			$awal = empty(Input::get('hal')) ? 1 : Input::get('hal');
@@ -18,7 +18,7 @@ class Buku
 	}
 
 	static function getLatest(){
-		$sql = "SELECT * FROM buku_view WHERE del = 0 ORDER BY id_buku DESC LIMIT 0,4";
+		$sql = "SELECT * FROM buku ORDER BY id_buku DESC LIMIT 0,4";
 
 		$prep = DB::conn()->prepare($sql);
 		$prep->execute();
@@ -26,7 +26,7 @@ class Buku
 	}
 
 	static function getSingle($id){
-		$sql = "SELECT * FROM buku_view WHERE slug = ?";
+		$sql = "SELECT * FROM buku WHERE slug = ?";
 
 		$prep = DB::conn()->prepare($sql);
 		$prep->execute([$id]);
@@ -35,7 +35,7 @@ class Buku
 
 	static function search($search){
 		$search = '%'.$search.'%';
-		$sql = "SELECT * FROM buku_view WHERE (id_buku LIKE ? OR judul LIKE ? OR penerbit LIKE ? OR penulis LIKE ?) AND del = 0";
+		$sql = "SELECT * FROM buku WHERE (id_buku LIKE ? OR judul LIKE ? OR penerbit LIKE ? OR penulis LIKE ?)";
 
 		$prep = DB::conn()->prepare($sql);
 		$prep->execute([$search, $search, $search, $search]);
@@ -43,7 +43,7 @@ class Buku
 	}
 
 	static function getFeatured(){
-		$sql = "SELECT * FROM buku_view WHERE del = 0 ORDER BY RAND() DESC LIMIT 0,6";
+		$sql = "SELECT * FROM buku ORDER BY RAND() DESC LIMIT 0,6";
 
 		$prep = DB::conn()->prepare($sql);
 		$prep->execute();
@@ -51,7 +51,7 @@ class Buku
 	}
 
 	static function getRand(){
-		$sql = "SELECT * FROM buku_view WHERE del = 0 AND slug != ? ORDER BY RAND() DESC LIMIT 0,4";
+		$sql = "SELECT * FROM buku WHERE slug != ? ORDER BY RAND() DESC LIMIT 0,4";
 
 		$prep = DB::conn()->prepare($sql);
 		$prep->execute([Input::get('slug')]);

@@ -36,29 +36,32 @@ switch ($url) {
 
 	case 'distributor':
 		cekLogin();
-		cekAkses();
+		cekAkses([1, 2]);
 		load('distributor');
 		break;
 
-	// case 'pesan':
-	// 	cekLogin();
-	// 	cekAkses();
-	// 	load('pesan');
-	// 	break;
+	case 'pesan':
+		cekLogin();
+		cekAkses([1,2]);
+		load('pesan');
+		break;
 
-	// case 'laporan':
+    // case 'laporan':
 	// 	cekLogin();
+    //     cekAkses([1, 2]);
 
 	// 	load('laporan');
 	// 	break;
 
 	case 'user':
-		cekLogin();
+        cekLogin();
+        cekAkses([1, 2]);
 		load('user');
-		break;
+        break;
+        
 	case 'backup':
 		cekLogin();
-		cekAkses();
+		cekAkses([1]);
 		$date = date('Y-m-d-H-i-s');
 		
 		//Change $exec into your directory mysqldump and your database
@@ -84,7 +87,23 @@ switch ($url) {
 		}else{
 			view('login/index.login');
 		}
-		break;
+        break;
+
+    case 'register':
+        cekStatus();
+        model('user');
+        if (cekPost()) {
+            if (User::add(true)) {
+                msg('Berhasil membuat akun, silahkan login', 'info');
+                redirect('?p=login');
+            } else {
+                msg('Gagal membuat akun', 'error');
+                redirect('?p=register');
+            }
+        } else {
+            view('register/index.register');
+        }
+        break;
 
 	case 'logout':
 		session_destroy();

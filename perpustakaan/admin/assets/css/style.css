@@ -282,7 +282,8 @@ a{
 	border: 0;
 	outline: 0;
 	cursor: pointer;
-	font-family: "Roboto";
+    font-family: "Roboto";
+    font-size: 10pt;
 }
 
 .btn-red{

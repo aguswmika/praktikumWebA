@@ -23,7 +23,7 @@ class Pasok
 	}
 
 	static function laporan($limit = 0){
-		$sql = "SELECT * FROM pasok LEFT JOIN buku ON buku.id_buku = pasok.id_buku LEFT JOIN distributor ON distributor.id_distributor = pasok.id_distributor WHERE pasok.del = 0";
+		$sql = "SELECT * FROM pasok LEFT JOIN buku ON buku.id_buku = pasok.id_buku LEFT JOIN distributor ON distributor.id_distributor = pasok.id_distributor";
 
 		if(!empty(Input::get('awal')) && !empty(Input::get('akhir'))){
 			if(Input::get('awal') == Input::get('akhir')){
@@ -114,7 +114,7 @@ class Pasok
 
 		$sql = '';
 		foreach ($id as $newId) {
-			$sql .= "UPDATE pasok SET del = 1 WHERE id_pasok = ?;";
+			$sql .= "DELETE FROM pasok WHERE id_pasok = ?;";
 		}
 
 		$prep = DB::conn()->prepare($sql);

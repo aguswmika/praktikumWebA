@@ -17,13 +17,13 @@
 						<th>Penulis</th>
 						<th>Penerbit</th>
 						<th>Stok</th>
-						<?php if(Session::sess('akses') == 1){ ?><th>Aksi</th><?php } ?>
+						<?php if(Session::sess('akses') == 1 || Session::sess('akses') == 2){ ?><th>Aksi</th><?php } ?>
 					</tr>
 				</thead>
 				<tbody>
 				
 				<div class="clearfix">
-					<?php if(Session::sess('akses') == 1){ ?>
+					<?php if(Session::sess('akses') == 1 || Session::sess('akses') == 2){ ?>
 					<div class="fl">
 						<a href="?p=buku&act=add" class="btn">Tambah</a> <a id="hps" class="btn" style="display:none">Hapus</a>
 					</div>
@@ -48,7 +48,7 @@
 						<td><?php echo $item->penulis ?></td>
 						<td><?php echo $item->penerbit ?></td>
 						<td><?php echo $item->stok ?></td>
-						<td><?php if(Session::sess('akses') == 1) { ?><a href="?p=buku&act=edit&id=<?php echo $item->id_buku ?>" class="btn">Edit</a><?php } ?></td>
+						<td><?php if(Session::sess('akses') == 1 || Session::sess('akses') == 2) { ?><a href="?p=buku&act=edit&id=<?php echo $item->id_buku ?>" class="btn">Edit</a><?php } ?></td>
 					</tr>
 				<?php } ?>
 

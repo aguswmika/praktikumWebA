@@ -1,21 +1,21 @@
 <?php 
 
 $url = !empty(Input::get('act')) ? Input::get('act') : 'index';
-model('penjualan');
+model('pinjaman');
 model('pasok');
 switch ($url) {
-	case 'penjualan':
+	case 'pinjaman':
 		$data = [
-			'title'        => 'Laporan Penjualan',
-			'penjualan'    => Penjualan::laporan(),
+			'title'        => 'Laporan Pinjaman',
+			'pinjaman'    => Pinjaman::laporan(),
  		];
-		view('laporan/penjualan.laporan', $data);
+		view('laporan/pinjaman.laporan', $data);
 		break;
 
 	case 'cetakpj':
 		CSRF::get();
 		$data = [
-			'penjualan'    => Penjualan::laporan(),
+			'pinjaman'    => Pinjaman::laporan(),
  		];
 		view('laporan/cetakpj.laporan', $data);
 		break;

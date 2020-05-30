@@ -22,7 +22,7 @@
 				</thead>
 				<tbody>
 				<div class="clearfix">
-					<?php if(Session::sess('akses') == 1) { ?>
+					<?php if(Session::sess('akses') == 1 || Session::sess('akses') == 2) { ?>
 					<div class="fl">
 						<a href="?p=pasok&act=add" class="btn">Tambah</a> <a id="hps" class="btn" style="display:none">Hapus</a>
 					</div>
@@ -47,7 +47,7 @@
 						<td><?php echo $item->nama_distributor ?> (<?php echo $item->id_distributor ?>)</td>
 						<td><?php echo $item->jumlah ?></td>
 						<td><?php echo date('Y-m-d', strtotime($item->tanggal)) ?></td>
-						<td> <?php if(Session::sess('akses') == 1){ ?><a href="?p=pasok&act=edit&id=<?php echo $item->id_pasok ?>" class="btn">Edit</a><?php } ?></td>
+						<td> <?php if(Session::sess('akses') == 1 || Session::sess('akses') == 2){ ?><a href="?p=pasok&act=edit&id=<?php echo $item->id_pasok ?>" class="btn">Edit</a><?php } ?></td>
 						<!-- <a href="?p=pasok&act=transfer&id=<?php echo $item->id_pasok ?>" class="btn">Transfer</a> -->
 					</tr>
 				<?php } ?>

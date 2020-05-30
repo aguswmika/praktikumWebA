@@ -23,7 +23,16 @@ class User
 		$prep = DB::conn()->prepare($sql);
 		$prep->execute([$id]);
 		return $prep->fetch(PDO::FETCH_OBJ);
-	}
+    }
+
+    static function getSingleByNama($id)
+    {
+        $sql = "SELECT * FROM user WHERE nama = ?";
+
+        $prep = DB::conn()->prepare($sql);
+        $prep->execute([$id]);
+        return $prep->fetch(PDO::FETCH_OBJ);
+    }
 
 	static function getPj(){
 		$sql = "SELECT * FROM user WHERE akses = 3";
@@ -65,16 +74,22 @@ class User
 		}
 	}
 
-	static function add(){
+	static function add($register = false){
 		$id      = autoNum('user', 'id_user', 'US');
 		
 		$nama     = Input::post('nama');
 		$alamat   = Input::post('alamat');
 		$telepon  = Input::post('telepon');
 		$user     = Input::post('user');
-		$pass     = md5(sha1(Input::post('pass')));
-		$akses    = Input::post('akses') == 2 ? 2 : 3;
+        $pass     = md5(sha1(Input::post('pass')));
+        $akses    = Input::post('akses') == 2 ? 2 : 3;
+        
+        if($register == true)
+            $akses = 3;
 
+        if(!empty(User::getSingleByNama($nama))){
+            return false;
+        }
 
 		$sql  = "INSERT INTO user (id_user, nama, alamat, telepon, status, username, password, akses) VALUES (?, ?, ?, ?, 'active', ?, ?, ?);";
 		$prep = DB::conn()->prepare($sql);

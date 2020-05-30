@@ -39,6 +39,7 @@ switch ($url) {
         break;
     
     case 'changestatus':
+        cekAkses([1, 2]);
         if (cekPost()) {
             if (Pinjaman::changeStatus()) {
                 msg('Berhasil diubah');
@@ -51,30 +52,31 @@ switch ($url) {
         
         break;
 
-    case 'edit':
-        $item = Pinjaman::getSingle(Input::get('id'));
-        $data = [
-            'title'     => 'Edit Pinjaman',
-            'item'        => $id,
-            'buku'      => Buku::getPj(),
-            'user'      => User::getPj()
-        ];
+    // case 'show':
+    //     $item = Pinjaman::getSingle(Input::get('id'));
+    //     $data = [
+    //         'title'     => 'Edit Pinjaman',
+    //         'item'      => $id,
+    //         'buku'      => Buku::getPj(),
+    //         'user'      => User::getPj()
+    //     ];
 
-        if (cekPost()) {
-            if (Pinjaman::add()) {
-                msg('Berhasil ditambahkan');
-                redirect('?p=pinjaman');
-            } else {
-                msg('Gagal ditambahkan');
-                redirect('?p=pinjaman&act=add');
-            }
-        } else {
-            view('pinjaman/add.pinjaman', $data);
-        }
+    //     if (cekPost()) {
+    //         if (Pinjaman::edit()) {
+    //             msg('Berhasil ditambahkan');
+    //             redirect('?p=pinjaman');
+    //         } else {
+    //             msg('Gagal ditambahkan');
+    //             redirect('?p=pinjaman&act=add');
+    //         }
+    //     } else {
+    //         view('pinjaman/add.pinjaman', $data);
+    //     }
 
-        break;
+    //     break;
 
-	case 'del':
+    case 'del':
+        cekAkses([1, 2]);
 		if(cekPost()){
 			if(Pinjaman::del()){
 				msg('Berhasil dihapus');

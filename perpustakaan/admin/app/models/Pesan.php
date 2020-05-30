@@ -4,7 +4,7 @@ class Pesan
 {
 	
 	static function getAll($limit = 0){
-		$sql = "SELECT * FROM pesan WHERE del = 0";
+		$sql = "SELECT * FROM pesan";
 
 		if($limit > 0){
 			$awal = empty(Input::get('hal')) ? 1 : Input::get('hal');
@@ -27,7 +27,7 @@ class Pesan
 
 	static function search($search){
 		$search = '%'.$search.'%';
-		$sql = "SELECT * FROM pesan WHERE (perihal LIKE ? OR nama LIKE ? OR email LIKE ?) AND del = 0";
+		$sql = "SELECT * FROM pesan WHERE (perihal LIKE ? OR nama LIKE ? OR email LIKE ?)";
 
 		$prep = DB::conn()->prepare($sql);
 		$prep->execute([$search, $search, $search]);
@@ -39,7 +39,7 @@ class Pesan
 
 		$sql = '';
 		foreach ($id as $newId) {
-			$sql .= "UPDATE pesan SET del = 1 WHERE id_pesan = ?;";
+			$sql .= "DELETE FROM pesan WHERE id_pesan = ?;";
 		}
 
 		$prep = DB::conn()->prepare($sql);
