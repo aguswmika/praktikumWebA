@@ -9,9 +9,7 @@ class Pinjaman
             INNER JOIN user AS u1 ON u1.id_user = pinjaman.id_peminjam
             LEFT JOIN user AS u2 ON u2.id_user = pinjaman.id_admin
         ";
-		if(Session::sess('akses') == 2){
-			$sql .= ' WHERE pinjaman.id_admin = "'.Session::sess('id').'"';
-		} else if (Session::sess('akses') == 3) {
+		if (Session::sess('akses') == 3) {
             $sql .= ' WHERE pinjaman.id_peminjam = "' . Session::sess('id') . '"';
         }
 
